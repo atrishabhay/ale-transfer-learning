@@ -1,3 +1,0 @@
-[submodule "ob_detection"]
-	path = ob_detection
-	url = git@github.com:lyndonkl/ob_detection.git

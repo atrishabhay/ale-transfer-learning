@@ -24,26 +24,41 @@ class TemplateMatching:
 
         self.template_dims = {name: template.shape[::-1] for name, template in self.templates.items()}
 
-    def match_templates(self, frame):
-        img_rgb = cv2.imread('ob_detection/images/frame.png')
+    def match_templates(self, frame=None, compress=True):
+        '''
+        frame : numpy array
+        compress :  True  -> Bounding boxes around the detected objects, on a copy of the frame
+                    False -> Filled bounding boxes at the location of the detected objects, on a black cancas
+        '''
 
-        img_rgb = img_rgb.copy() #Dont modify frame inplace
-        img_blk = img_rgb.copy()*0 #Final compressed frame
+        img_rgb = cv2.imread('ob_detection/images/frame.png') if frame is None else frame
+
+        #Dont modify frame inplace
+        img_rgb = img_rgb.copy() 
+        img_final = img_rgb.copy() 
+
+        #Fill the rectangles for matching templates. +ve: Dont Fill, -ve: Fill
+        fill = 1 
         
+        #Compress will create colored rectangles for each matching template on a black canvas.
+        if compress:
+            fill = cv2.FILLED
+            img_final *= 0 #Black canvas for the final compressed frame
+        
+        #Input frame to rgb for template matching
         img_gray = cv2.cvtColor(img_rgb, cv2.COLOR_BGR2GRAY)
         colors = self.config.get_colors()
 
         for name, template in self.templates.items():
             res = cv2.matchTemplate(img_gray, template, self.config.get_method())
-            threshold = 0.8#TODO Move to config
+            threshold = 0.7#TODO Move to config
             loc = np.where(res >= threshold)
 
             w,h = self.template_dims[name]
             for pt in zip(*loc[::-1]):
-                cv2.rectangle(img_blk, pt, (pt[0] + w, pt[1] + h), colors[name], cv2.FILLED)
+                cv2.rectangle(img_final, pt, (pt[0] + w, pt[1] + h), colors[name], fill)
 
-        return img_blk
+        return img_final
 
-    def process_results(self, img):
-        cv2.imwrite('images/res.png',img)
-
+    def save_img(self, img, file_name='res'):
+        cv2.imwrite(f'ob_detection/images/{file_name}.png',img)

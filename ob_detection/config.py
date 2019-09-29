@@ -4,7 +4,11 @@ class Config:
     def __init__(self):
         self.threshold = 0.8 #TODO Should be set for each method. 0.8 is for CCOEFF_NORMED
         self._templates = {
-            'mario' :{  'path':'ob_detection/images/templates/mario.png',
+            'mario_frwrd' :{  'path':'ob_detection/images/templates/mario_forward.png',
+                        'color': (3, 255, 32),
+                        'threshold': self.threshold,
+                        },
+            'mario_backwrd' :{  'path':'ob_detection/images/templates/mario_backward.png',
                         'color': (3, 255, 32),
                         'threshold': self.threshold,
                         },
@@ -13,6 +17,10 @@ class Config:
                         'threshold': self.threshold,
                         },
             'obs1'  :{  'path':'ob_detection/images/templates/obs1.png',
+                        'color': (255, 162, 0),
+                        'threshold': self.threshold,
+                        },
+            'obs3'  :{  'path':'ob_detection/images/templates/obs3.png',
                         'color': (255, 162, 0),
                         'threshold': self.threshold,
                         },

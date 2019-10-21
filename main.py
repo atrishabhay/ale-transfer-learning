@@ -24,7 +24,7 @@ def main():
         #if move==-1:
         #    break
         frame = game.perform_move(move)
-        res_img = tm.match_templates(frame, compress=False)
+        res_img = tm.match_templates(frame, compress=True)
         if 200<i<300:
             tm.save_img(res_img, file_name='res_'+str(it))
             #tm.save_img(frame, file_name='frame_'+str(it))

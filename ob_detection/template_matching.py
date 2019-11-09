@@ -5,14 +5,14 @@ from matplotlib import pyplot as plt
 import os
 
 class TemplateMatching:
-    def __init__(self, *args, **kwargs):
+    def __init__(self, game = None):
         '''
         Load templates which will be used for multiple frames.
         Templates defined in config file
         '''
         self.templates = dict()
         self.template_dims = dict()
-        self.config = Config()
+        self.config = Config(game)
         self.load_templates()
 
     def load_templates(self):

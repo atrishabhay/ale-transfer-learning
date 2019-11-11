@@ -4,7 +4,7 @@ from gym_super_mario_bros.actions import SIMPLE_MOVEMENT
 
 class Mario:
     def __init__(self, *args, **kwargs):
-        self._env = gym_super_mario_bros.make(kwargs.get('env','SuperMarioBros-v0'))
+        self._env = gym_super_mario_bros.make(kwargs.get('env','AdventureIsland3-v0'))
         self._env = JoypadSpace(self._env, SIMPLE_MOVEMENT)
         self._env.reset()
 

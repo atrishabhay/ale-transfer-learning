@@ -25,7 +25,7 @@ class Interactive(abc.ABC):
     """
     def __init__(self, env, sync=True, tps=60, aspect_ratio=None):
         obs = env.reset()
-        self._tm = TemplateMatching('sonic')
+        self._tm = TemplateMatching('ADV')
         self._image = self.get_image(obs, env)
         assert len(self._image.shape) == 3 and self._image.shape[2] == 3, 'must be an RGB image'
         image_height, image_width = self._image.shape[:2]

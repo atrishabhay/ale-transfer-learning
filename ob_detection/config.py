@@ -34,7 +34,7 @@ class Config:
                         }
         }
 
-        if game == 'sonic':
+        if game == 'ADV':
             self._templates = {
                 'son1' :{  'path':'ob_detection/images/templates/sonic/son1.png',
                             'color': (3, 255, 32),

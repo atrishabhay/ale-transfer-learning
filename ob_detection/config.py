@@ -15,6 +15,18 @@ class Config:
             'obs1'  :{  'path':'ob_detection/images/templates/obstacles/',
                         'color': (255, 162, 0),
                         'threshold': self.threshold,
+                        },
+            'contra' :{  'path':'ob_detection/images/templates/contra/contra/',
+                        'color': (0, 0, 0),
+                        'threshold': self.threshold,
+                        },
+            'contra_enemy':{  'path':'ob_detection/images/templates/contra/enemies/',
+                        'color': (0, 0, 255),
+                        'threshold': self.threshold,
+                        },
+            'contra_obs'  :{  'path':'ob_detection/images/templates/contra/obstacles/',
+                        'color': (255, 162, 0),
+                        'threshold': self.threshold,
                         }
         }
 

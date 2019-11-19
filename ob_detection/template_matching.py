@@ -15,6 +15,8 @@ class TemplateMatching:
         self.template_dims = dict()
         self.config = Config()
         self.load_templates()
+        
+        self.colors = self.config.get_colors()
 
     def load_templates(self):
         for obj_type, loc in self.config.get_templates().items():
@@ -51,17 +53,16 @@ class TemplateMatching:
         
         #Input frame to rgb for template matching
         img_gray = cv2.cvtColor(img_rgb, cv2.COLOR_BGR2GRAY)
-        colors = self.config.get_colors()
 
         for obj_type, templates in self.templates.items():
             for name, template in templates.items():
                 res = cv2.matchTemplate(img_gray, template, self.config.get_method())
-                threshold = 0.85#TODO Move to config
+                threshold = 0.88#TODO Move to config
                 loc = np.where(res >= threshold)
 
                 w,h = self.template_dims[obj_type][name]
                 for pt in zip(*loc[::-1]):
-                    cv2.rectangle(img_final, pt, (pt[0] + w, pt[1] + h), colors[obj_type], fill)
+                    cv2.rectangle(img_final, pt, (pt[0] + w, pt[1] + h), self.colors[obj_type], fill)
 
         return img_final
 

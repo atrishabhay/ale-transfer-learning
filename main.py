@@ -2,6 +2,7 @@ import cv2
 from ob_detection.template_matching import *
 from environments.mario import *
 from environments.contra import *
+import matplotlib.pyplot as plt
 import time
 
 def match_template_test():
@@ -44,13 +45,15 @@ def main():
         frame = game.perform_move(move)
         res_img = tm.match_templates(frame, compress=True)
 
+        cv2.imshow("img", res_img)
+
         frame = np.concatenate((frame, res_img), axis=0)
         out.write(frame)
 
         #if 1<i<300:
         #tm.save_img(res, file_name='res_'+str(it))
         #tm.save_img(frame, file_name='frame_'+str(it))
-        it+=1
+        #it+=1
 
     out.release()
 

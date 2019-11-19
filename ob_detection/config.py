@@ -4,29 +4,40 @@ class Config:
     def __init__(self):
         self.threshold = 0.8 #TODO Should be set for each method. 0.8 is for CCOEFF_NORMED
         self._templates = {
-            'mario' :{  'path':'ob_detection/images/templates/mario/',
+            'mario' :{  'path':'ob_detection/images/templates/mario/mario/',
                         'color': (3, 255, 32),
                         'threshold': self.threshold,
+                        'game':'mario'
                         },
-            'enemy2':{  'path':'ob_detection/images/templates/enemies/',
+            'enemy2':{  'path':'ob_detection/images/templates/mario/enemies/',
                         'color': (0, 0, 255),
                         'threshold': self.threshold,
+                        'game':'mario'
                         },
-            'obs1'  :{  'path':'ob_detection/images/templates/obstacles/',
+            'obs1'  :{  'path':'ob_detection/images/templates/mario/obstacles/',
                         'color': (255, 162, 0),
                         'threshold': self.threshold,
+                        'game':'mario'
+                        },
+            'mario_reward' :{  'path':'ob_detection/images/templates/mario/rewards/',
+                        'color': (, 255, 32),
+                        'threshold': self.threshold,
+                        'game':'mario'
                         },
             'contra' :{  'path':'ob_detection/images/templates/contra/contra/',
                         'color': (0, 0, 0),
                         'threshold': self.threshold,
+                        'game':'contra'
                         },
             'contra_enemy':{  'path':'ob_detection/images/templates/contra/enemies/',
                         'color': (0, 0, 255),
                         'threshold': self.threshold,
+                        'game':'contra'
                         },
             'contra_obs'  :{  'path':'ob_detection/images/templates/contra/obstacles/',
                         'color': (255, 162, 0),
                         'threshold': self.threshold,
+                        'game':'contra'
                         }
         }
 

@@ -43,7 +43,7 @@ def main():
             move=3
 
         frame = game.perform_move(move)
-        res_img = tm.match_templates(frame, compress=True)
+        res_img = tm.match_templates(frame, compress=False)
 
         cv2.imshow("img", res_img)
 

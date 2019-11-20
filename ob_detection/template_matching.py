@@ -59,8 +59,17 @@ class TemplateMatching:
                 res = cv2.matchTemplate(img_gray, template, self.config.get_method())
                 threshold = 0.88#TODO Move to config
                 loc = np.where(res >= threshold)
-
                 w,h = self.template_dims[obj_type][name]
+                if "mario" in name:
+                    if "big" in name:
+                        y,x = loc
+                        loc = (y-3, x-3)
+                        w,h = 16, 31
+                    else:
+                        y,x = loc
+                        loc = (y-1, x-4)
+                        w,h = 15, 15
+
                 for pt in zip(*loc[::-1]):
                     cv2.rectangle(img_final, pt, (pt[0] + w, pt[1] + h), self.colors[obj_type], fill)
 

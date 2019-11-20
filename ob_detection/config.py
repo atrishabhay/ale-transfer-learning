@@ -20,7 +20,7 @@ class Config:
                         'game':'mario'
                         },
             'mario_reward' :{  'path':'ob_detection/images/templates/mario/rewards/',
-                        'color': (, 255, 32),
+                        'color': (52, 225, 235),
                         'threshold': self.threshold,
                         'game':'mario'
                         },

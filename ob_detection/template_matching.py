@@ -62,13 +62,24 @@ class TemplateMatching:
                 w,h = self.template_dims[obj_type][name]
                 if "mario" in name:
                     if "big" in name:
-                        y,x = loc
-                        loc = (y-3, x-3)
-                        w,h = 16, 31
+                        y,x = loc       
+                        loc = (y-3, x-3)#Change top left corner of BB
+                        w,h = 16, 31    #Size of BB
                     else:
                         y,x = loc
                         loc = (y-1, x-4)
                         w,h = 15, 15
+
+                elif "enemy" in name:
+                    if "1" in name:
+                        #Mushroom top enemy
+                        y,x = loc       
+                        loc = (y-4, x-4)#Change top left corner of BB
+                        w,h = 16, 15    #Size of BB
+                    elif "2" in name:
+                        y,x = loc       
+                        loc = (y-10, x-4)#Change top left corner of BB
+                        w,h = 16, 21    #Size of BB
 
                 for pt in zip(*loc[::-1]):
                     cv2.rectangle(img_final, pt, (pt[0] + w, pt[1] + h), self.colors[obj_type], fill)
